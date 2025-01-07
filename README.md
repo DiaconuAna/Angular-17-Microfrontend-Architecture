@@ -120,8 +120,46 @@ applications' entry files (remoteEntry.js) are served. These files expose the mo
 The `shared` configuration specifies which dependencies should be shared between the host and remotes. The `shareAll`
 function is used to share all dependencies automatically.
 
-The two microfrontend projects, `mfe1` and `mfe2`, will both be configured in a similar manner:
+The two microfrontend projects, `mfe1` and `mfe2`, will both be configured in a similar manner. Each microfrontend needs
+to have defined a module, which will be exposed via the remote's webpack configuration.
+
+Example steps for `mfe1`:
 
 ```angular2html
+ng generate module main-mfe1
+```
+
+And add it in the routing module of the project:
+
+```angular2html
+const routes: Routes = [
+   {
+      path: '',
+      loadChildren: () => import('./main-mfe1/main-mfe1.module').then(m => m.MainMfe1Module), // Route to LoginModule
+   },
+];
+```
+
+The Webpack remote configuration will look like this:
+
+```angular2html
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+const Mfe1ModuleFederationConfigPlugin = withModuleFederationPlugin({
+
+  name: 'mfe1',
+
+        exposes: {
+                './MainMfe1Module': './src/app/main-mfe1/main-mfe1.module.ts',
+                },
+
+shared: {
+...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+},
+
+});
+
+Mfe1ModuleFederationConfigPlugin.output.publicPath = 'http://localhost:4201/'
+module.exports = Mfe1ModuleFederationConfigPlugin;
 
 ```
