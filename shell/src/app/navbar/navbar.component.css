@@ -1,0 +1,40 @@
+/* src/app/navbar/navbar.component.css */
+.navbar {
+  background-color: #f0f8ff; /* Light blue background for the navbar */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin: 0 15px; /* Space between the blocks */
+}
+
+.navbar-link {
+  display: block;
+  padding: 15px 30px;
+  background-color: #b3d9ff; /* Light blue block */
+  color: #333; /* Dark text for contrast */
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+.navbar-link:hover {
+  background-color: #80c7ff; /* Slightly darker blue when hovering */
+  color: white; /* Change text color on hover */
+}
+
+.navbar-link:active {
+  background-color: #66b3ff; /* Even darker blue when the item is clicked */
+}

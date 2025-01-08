@@ -161,5 +161,29 @@ shared: {
 
 Mfe1ModuleFederationConfigPlugin.output.publicPath = 'http://localhost:4201/'
 module.exports = Mfe1ModuleFederationConfigPlugin;
+```
 
+In the configuration above we have defined the name of the module as `MainMfe1Module`, as previously generated.
+There is also a new argument, `Exposures`, which exposes `MainMfe1Module` so that other applications can use it.
+
+Proceed in a similar manner for the other microfrontend, `mfe2`.
+
+Getting back to the host application, we will import both modules, `mfe1` and `mfe2`.
+This will happen in the host routing module:
+```angular2html
+const routes: Routes = [
+{
+        path:'main-mfe1',
+        loadChildren: () =>
+          loadRemoteModule({
+            remoteEntry: 'http://localhost:4201/remoteEntry.js',
+            exposedModule: './MainMfe1Module',
+            type: 'module',
+          })
+            .then((m) => m.MainMfe1Module)
+            .catch((err) => {
+              console.error('Error loading MainMfe1Module:', err);
+            }),
+        }
+];
 ```
