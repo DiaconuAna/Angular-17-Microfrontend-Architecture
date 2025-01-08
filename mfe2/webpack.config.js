@@ -1,11 +1,11 @@
 const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 
-module.exports = withModuleFederationPlugin({
+const Mfe2ModuleFederationConfigPlugin = withModuleFederationPlugin({
 
   name: 'mfe2',
 
   exposes: {
-    './Component': './src/app/app.component.ts',
+    './MainMfe2Module': './src/app/main-mfe2/main-mfe2.module.ts',
   },
 
   shared: {
@@ -13,3 +13,6 @@ module.exports = withModuleFederationPlugin({
   },
 
 });
+
+Mfe2ModuleFederationConfigPlugin.output.publicPath = 'http://localhost:4202/'
+module.exports = Mfe2ModuleFederationConfigPlugin;

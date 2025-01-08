@@ -184,6 +184,31 @@ const routes: Routes = [
             .catch((err) => {
               console.error('Error loading MainMfe1Module:', err);
             }),
-        }
+        },
+{
+        path:'main-mfe2',
+        loadChildren: () =>
+          loadRemoteModule({
+            remoteEntry: 'http://localhost:4202/remoteEntry.js',
+            exposedModule: './MainMfe2Module',
+            type: 'module',
+          })
+            .then((m) => m.MainMfe2Module)
+            .catch((err) => {
+              console.error('Error loading MainMfe2Module:', err);
+            }),
+        },
+
 ];
 ```
+----
+## Demo
+
+For practical purposes, the `shell` application contains a `navbar` component which handles the navigation between the
+two microfrontends.
+
+- Main Page (host application)
+
+- Microfrontend 1 remote component displayed in host
+
+- Microfrontend 2 remote component displayed in host
