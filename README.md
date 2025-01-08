@@ -208,7 +208,10 @@ For practical purposes, the `shell` application contains a `navbar` component wh
 two microfrontends.
 
 - Main Page (host application)
+  ![main_page](https://github.com/DiaconuAna/Angular-17-Microfrontend-Architecture/blob/main/Resources/main_page.png)
 
 - Microfrontend 1 remote component displayed in host
+  ![mfe1](https://github.com/DiaconuAna/Angular-17-Microfrontend-Architecture/blob/main/Resources/mfe1.png)
 
 - Microfrontend 2 remote component displayed in host
+  ![mfe2](https://github.com/DiaconuAna/Angular-17-Microfrontend-Architecture/blob/main/Resources/mfe2.png)
